@@ -73,7 +73,14 @@
   function dismissCookie(accepted) {
     if (!cookieBanner) return;
     localStorage.setItem(COOKIE_KEY, accepted ? 'accepted' : 'declined');
-    cookieBanner.classList.remove('visible');
+    cookieBanner.classList.add('dismissing');
+    const onDismissed = (e) => {
+      if (e.target === cookieBanner && e.propertyName === 'transform') {
+        cookieBanner.classList.remove('visible', 'dismissing');
+        cookieBanner.removeEventListener('transitionend', onDismissed);
+      }
+    };
+    cookieBanner.addEventListener('transitionend', onDismissed);
     if (accepted) {
       showToast('🍪 Cookies accepterade – tack!');
     }
