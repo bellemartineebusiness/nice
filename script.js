@@ -119,7 +119,7 @@
 
   // ---- Scroll-reveal animation ----
   const revealEls = document.querySelectorAll(
-    '.service-card, .step-card, .price-card, .why-item, .hero-stats .stat-item'
+    '.service-card, .step-card, .why-item, .hero-stats .stat-item'
   );
   const revealObs = new IntersectionObserver(
     entries => {
